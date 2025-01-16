@@ -99,3 +99,20 @@ margin: 0 auto;
 border: 2px solid aqua;
 padding: 1rem;
 }
+/*Cor da sombra*/
+#color {
+    width: 50px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+}
+#color-value {
+    height: 30px;
+    width: 100px; 
+    margin-left: 1rem;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px; 
+}
+

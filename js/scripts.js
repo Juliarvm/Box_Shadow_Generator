@@ -1,6 +1,6 @@
 class Generator {
     constructor(horizontal, horizontalRef, vertical, verticalRef, blur,
-        blurRef, spread, spreadRef, previewBox, rule, webkitRule, mozRule) {
+        blurRef, spread, spreadRef, color, colorRef, previewBox, rule, webkitRule, mozRule) {
 
         this.horizontal = horizontal
         this.horizontalRef = horizontalRef
@@ -10,6 +10,8 @@ class Generator {
         this.blurRef = blurRef
         this.spread = spread
         this.spreadRef = spreadRef
+        this.color = color
+        this.colorRef = colorRef
         this.previewBox = previewBox
         this.rule = rule
         this.webkitRule = webkitRule
@@ -20,13 +22,14 @@ class Generator {
         this.horizontalRef.value = this.horizontal.value;
         this.verticalRef.value = this.vertical.value;
         this.spreadRef.value = this.spread.value;
+        this.colorRef.value = this.color.value;
         this.blurRef.value = this.blur.value;
         this.applyRule();
         this.showRule();
     }
 
     applyRule() {
-        this.previewBox.style.boxShadow = `${this.horizontalRef.value}px ${this.verticalRef.value}px ${this.blurRef.value}px ${this.spreadRef.value}px #000000`
+        this.previewBox.style.boxShadow = `${this.horizontalRef.value}px ${this.verticalRef.value}px ${this.blurRef.value}px ${this.spreadRef.value}px${this.colorRef.value}`;
         this.currentRule = this.previewBox.style.boxShadow;
     }
 
@@ -50,6 +53,9 @@ class Generator {
             case "spread":
                 this.spreadRef.value = value;
                 break
+            case "color":
+                this.colorRef.value = value;
+                break;
 
         }
         this.applyRule();
@@ -66,6 +72,8 @@ const blur = document.querySelector("#blur")
 const blurRef = document.querySelector("#blur-value")
 const spread = document.querySelector("#spread")
 const spreadRef = document.querySelector("#spread-value")
+const color = document.querySelector("#color")
+const colorRef = document.querySelector("#color-value")
 
 const previewBox = document.querySelector("#box")
 
@@ -74,7 +82,7 @@ const webkitRule = document.querySelector("#webkit-rule span")
 const mozRule = document.querySelector("#moz-rule span")
 
 const boxShadow = new Generator(horizontal, horizontalRef, vertical, verticalRef, blur,
-    blurRef, spread, spreadRef, previewBox, rule, webkitRule, mozRule);
+    blurRef, spread, spreadRef, color, colorRef, previewBox, rule, webkitRule, mozRule);
 boxShadow.initialize();
 //Eventos
 
@@ -96,4 +104,8 @@ spread.addEventListener("input", (e) => {
 blur.addEventListener("input", (e) => {
     const value = e.target.value;
     boxShadow.updateValue("blur", value);
+})
+color.addEventListener("input", (e) => {
+    const value = e.target.value;
+    boxShadow.updateValue("color", value);
 })
