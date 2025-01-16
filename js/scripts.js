@@ -1,7 +1,7 @@
 class Generator {
     constructor(horizontal, horizontalRef, vertical, verticalRef, blur,
         blurRef, spread, spreadRef, color, colorRef, opacity, opacityRef,
-        previewBox, rule, webkitRule, mozRule, insetCheckbox) {
+        previewBox, rule, webkitRule, mozRule, insetCheckbox, shapeSelect) {
 
         this.horizontal = horizontal;
         this.horizontalRef = horizontalRef;
@@ -20,6 +20,7 @@ class Generator {
         this.webkitRule = webkitRule;
         this.mozRule = mozRule;
         this.insetCheckbox = insetCheckbox;
+        this.shapeSelect = shapeSelect; // Adicionado shapeSelect no construtor
     }
 
     initialize() {
@@ -32,6 +33,7 @@ class Generator {
         this.inset = this.insetCheckbox.checked ? 'inset' : '';
         this.applyRule();
         this.showRule();
+        this.updateShape(this.shapeSelect.value);  // Chamada para updateShape dentro de initialize
     }
 
     applyRule() {
@@ -87,9 +89,28 @@ class Generator {
         const b = parseInt(hex.substr(5, 2), 16);
         return `rgba(${r}, ${g}, ${b}, ${opacity})`;
     }
+
+    updateShape(shape) {
+        this.previewBox.classList.remove("square", "circle", "diamond");  // Remove qualquer forma anterior
+        switch (shape) {
+            case "square":
+                this.previewBox.classList.add("square");
+                break;
+            case "circle":
+                this.previewBox.classList.add("circle");
+                break;
+            case "diamond":
+                this.previewBox.classList.add("diamond");
+                break;
+            default:
+                this.previewBox.classList.add("rectangle");
+                break;
+        }
+    }
 }
 
 // Seleção de elementos
+const shapeSelect = document.querySelector("#shape");
 const horizontal = document.querySelector("#horizontal");
 const horizontalRef = document.querySelector("#horizontal-value");
 const vertical = document.querySelector("#vertical");
@@ -111,7 +132,7 @@ const webkitRule = document.querySelector("#webkit-rule span");
 const mozRule = document.querySelector("#moz-rule span");
 
 const boxShadow = new Generator(horizontal, horizontalRef, vertical, verticalRef, blur,
-    blurRef, spread, spreadRef, color, colorRef, opacity, opacityRef, previewBox, rule, webkitRule, mozRule, insetCheckbox);
+    blurRef, spread, spreadRef, color, colorRef, opacity, opacityRef, previewBox, rule, webkitRule, mozRule, insetCheckbox, shapeSelect);
 boxShadow.initialize();
 
 // Eventos
@@ -148,6 +169,11 @@ opacity.addEventListener("input", (e) => {
 insetCheckbox.addEventListener("change", (e) => {
     const value = e.target.checked;
     boxShadow.updateValue("inset", value);
+});
+
+shapeSelect.addEventListener("change", (e) => {
+    const value = e.target.value;
+    boxShadow.updateShape(value); // Usando a instância do Generator para chamar updateShape
 });
 
 // Atualizar valor das barras ao digitar no campo de texto

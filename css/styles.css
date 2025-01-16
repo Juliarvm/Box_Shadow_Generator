@@ -4,7 +4,7 @@
     padding: 0;
 }
 
-body{
+body {
     padding-bottom: 500px;
 }
 
@@ -36,8 +36,19 @@ h2 {
 
 .form-control label {
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
     color: #555;
+    display: flex;
+    /* Usado para alinhar o conteúdo horizontalmente */
+    justify-content: space-between;
+    /* Cria espaço entre o texto e o seletor */
+    align-items: center;
+
+}
+
+#shape {
+    margin-left: 10px;
+    padding: 0.5rem;
 }
 
 .range-input {
@@ -78,13 +89,49 @@ h2 {
     width: 30px;
     margin-left: 1rem;
     text-align: center;
+    margin-top: 20px;
 }
 
 /*Preview*/
-#box{
+/* Estilo padrão para o box */
+/* Preview */
+#box {
     width: 100%;
     height: 300px;
     background-color: aqua;
+    transition: all 0.3s ease;
+    display: flex;
+    /* Flexbox para centralizar o conteúdo */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+}
+
+/* Forma quadrada */
+#box.square {
+    width: 300px;
+    height: 300px;
+    margin-left: 70px;
+}
+
+/* Forma circular */
+#box.circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-left: 70px;
+}
+
+/* Forma losango */
+#box.diamond {
+    width: 300px;
+    height: 300px;
+    transform: rotate(45deg);
+    background-color: aqua;
+    margin: 0 auto;
+    margin-left: 70px;
+    margin-top: 70px;
 }
 
 
@@ -95,16 +142,16 @@ h2 {
     margin: 0 auto;
     border: 2px solid aqua;
     padding: 1rem;
-    text-align: center; 
+    text-align: center;
     display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #generated-rule p {
     margin-bottom: 0.5rem;
-    text-align: center; 
+    text-align: center;
 }
 
 /*Cor da sombra*/
@@ -114,15 +161,17 @@ h2 {
     border: none;
     cursor: pointer;
 }
+
 #color-value {
     height: 30px;
-    width: 100px; 
+    width: 100px;
     margin-left: 1rem;
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 14px; 
+    font-size: 14px;
 }
+
 /*Opacidade*/
 #opacity {
     width: 100%;
@@ -149,12 +198,11 @@ h2 {
     border-radius: 4px;
     font-size: 14px;
 }
+
 /* Sombra interna*/
 #inset {
     width: 30px;
     height: 30px;
     cursor: pointer;
-    margin-right: 10px; 
+    margin-right: 10px;
 }
-
-

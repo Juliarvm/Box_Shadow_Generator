@@ -14,6 +14,16 @@
         <div id="controls-container">
             <h2>Configurações da Box Shadow:</h2>
             <div class="form-control">
+                <label for="shape">Escolha a forma:</label>
+                <select id="shape" name="shape">
+                    <option value="rectangle">Retângulo</option>
+                    <option value="square">Quadrado</option>
+                    <option value="circle">Círculo</option>
+                    <option value="diamond">Losango</option>
+                </select>
+            </div>
+            
+            <div class="form-control">
                 <div class="range-input">
                     <label for="horizontal">Deslocamento horizontal:</label>
                     <input type="range" id="horizontal" name="horizontal" max="100" min="-100" value="5">
